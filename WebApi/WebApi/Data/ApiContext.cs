@@ -9,5 +9,6 @@ namespace WebApi.Data
              : base(options)
            { } 
            public DbSet<Usuario> Usuarios { get; set; }
+           public DbSet<Produto> Produtos { get; set; } 
     }
 }

@@ -1163,11 +1163,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\HP\\Desktop\\Projetos\\WebApi\\WebApi\\WebApi\\WebApi.csproj",
+      "projectUniqueName": "C:\\Users\\HP\\Desktop\\Projetos\\WebApi\\desafio-api\\WebApi\\WebApi\\WebApi.csproj",
       "projectName": "WebApi",
-      "projectPath": "C:\\Users\\HP\\Desktop\\Projetos\\WebApi\\WebApi\\WebApi\\WebApi.csproj",
+      "projectPath": "C:\\Users\\HP\\Desktop\\Projetos\\WebApi\\desafio-api\\WebApi\\WebApi\\WebApi.csproj",
       "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\HP\\Desktop\\Projetos\\WebApi\\WebApi\\WebApi\\obj\\",
+      "outputPath": "C:\\Users\\HP\\Desktop\\Projetos\\WebApi\\desafio-api\\WebApi\\WebApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",

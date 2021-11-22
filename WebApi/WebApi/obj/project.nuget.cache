@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "K2gv5jhr2xUwtEc94MgD3T4IjXH32gQfbrQK4sbpL74BoPs/3OM73+8Y5oASe8CHMFpeiFEeZiLW4BxKs39zNQ==",
+  "dgSpecHash": "naxY5ZtL5F8V6N8cfe0jwfe1JP7lN/Y+OWqOznFS9rZHQ9GD+PoPGz4hGGPBqSE73cxwAoil8l7XuM25H+2lhg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\HP\\Desktop\\Projetos\\WebApi\\WebApi\\WebApi\\WebApi.csproj",
+  "projectFilePath": "C:\\Users\\HP\\Desktop\\Projetos\\WebApi\\desafio-api\\WebApi\\WebApi\\WebApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.1\\microsoft.bcl.hashcode.1.1.1.nupkg.sha512",

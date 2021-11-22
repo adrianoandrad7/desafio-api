@@ -5,15 +5,15 @@ namespace WebApi.Models
     public class Usuario
     {
         public Guid Id { get; private set; }
-        public string Nome { get; set; }
-        public string Email { get; set; }
-        public DateTime DataNascimento { get; set; }
-        public string CPF { get; set; }
+        public string Nome { get; private set; }
+        public string Email { get; private set; }
+        public DateTime DataNascimento { get; private set; }
+        public string CPF { get; private set; }
         public DateTime DataCadastro { get; private set; }
         public bool Ativo { get; private set; }
-        public Usuario(Guid id,string email, string nome, DateTime dataNascimento, string cpf)
+        public Usuario(string email, string nome, DateTime dataNascimento, string cpf)
         {
-            Id = id;
+            Id = Guid.NewGuid();
             Email = email;
             Nome = nome;
             DataNascimento = dataNascimento;
@@ -21,13 +21,28 @@ namespace WebApi.Models
             CPF = cpf;
             Ativo = true;
         }
-
-        protected Usuario()
+        public Usuario()
         {
-
+            Id = Guid.NewGuid();
+            DataCadastro = DateTime.Now;
+            Ativo = true;
+        }
+        public void informarNome(string nome)
+        {
+            Nome = nome; 
+        }
+        public void informarCPF(string cpf)
+        {
+            CPF = cpf;
+        }
+        public void informarDataNascimento(DateTime dataNascimento)
+        {
+            DataNascimento = dataNascimento;
+        }
+        public void informarEmail(string email)
+        {
+            Email = email;
         }
 
-
-      
     }
 }
