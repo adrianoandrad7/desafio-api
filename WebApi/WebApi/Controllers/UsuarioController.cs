@@ -78,6 +78,15 @@ namespace WebApi.Controllers
                 usuario.informarDataNascimento(request.DataNascimento);
 
                 await _context.SaveChangesAsync();
+
+                if (!ValidaEmail(usuario.Email))
+                    return BadRequest("Email Inválido");
+                else if (!ValidaNome(usuario.Nome))
+                    return BadRequest("Nome Inválido");
+                else if (!ValidaCPF(usuario.CPF))
+                    return BadRequest("CPF Inválido");
+                else if (usuario.DataNascimento == null)
+                    return BadRequest("Data Inválida");
             }
             catch (DbUpdateConcurrencyException)
             {

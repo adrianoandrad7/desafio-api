@@ -50,7 +50,7 @@ namespace WebApi.Controllers
 
             if (!ValidaDescricao(produto.Descricao))
                 return BadRequest("Descrição Inválida");
-            if (!ValidaValor(produto.Valor))
+            else if (!ValidaValor(produto.Valor))
                 return BadRequest("Valor Inválido");
             else if (!ValidaEstoque(produto.QuantidadeEstoque))
                 return BadRequest("Quantidade estoque inválida");
@@ -68,11 +68,18 @@ namespace WebApi.Controllers
                 if (produto?.Id != id)
                     return BadRequest();
 
+                await _context.SaveChangesAsync();
+
                 produto.informarDescricao(request.Descricao);
                 produto.informarValor(request.Valor);
                 produto.informarEstoque(request.QuantidadeEstoque);
 
-                await _context.SaveChangesAsync();
+                if (!ValidaDescricao(produto.Descricao))
+                    return BadRequest("Descrição Inválido");
+                else if (!ValidaValor(produto.Valor))
+                    return BadRequest("Valor Inválido");
+                else if (!ValidaEstoque(produto.QuantidadeEstoque))
+                    return BadRequest("Quantidade estoque Inválido");
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -112,7 +119,7 @@ namespace WebApi.Controllers
         }
         private bool ValidaEstoque(int estoque)
         {
-            if(estoque < 0)
+            if(estoque <= 0)
                 return false;
             else
                 return true;
