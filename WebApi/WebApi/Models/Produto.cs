@@ -20,20 +20,19 @@ namespace WebApi.Models
             Ativo = true;
             QuantidadeEstoque = quantidadeNoEstoque;
         }
-        public Produto()
+        protected Produto()
         {
-            Id = Guid.NewGuid();
-            Ativo = true;
+
         }
-        public void informarDescricao(string descricao)
+        public void InformarDescricao(string descricao)
         {
             Descricao = descricao;
         }
-        public void informarValor(double valor)
+        public void InformarValor(double valor)
         {
             Valor = valor;
         }
-        public void informarEstoque(int estoque)
+        public void InformarEstoque(int estoque)
         {
             QuantidadeEstoque = estoque;
         }

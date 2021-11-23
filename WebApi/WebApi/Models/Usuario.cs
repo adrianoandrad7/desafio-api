@@ -21,25 +21,23 @@ namespace WebApi.Models
             CPF = cpf;
             Ativo = true;
         }
-        public Usuario()
+        protected Usuario()
         {
-            Id = Guid.NewGuid();
-            DataCadastro = DateTime.Now;
-            Ativo = true;
+
         }
-        public void informarNome(string nome)
+        public void InformarNome(string nome)
         {
             Nome = nome; 
         }
-        public void informarCPF(string cpf)
+        public void InformarCPF(string cpf)
         {
             CPF = cpf;
         }
-        public void informarDataNascimento(DateTime dataNascimento)
+        public void InformarDataNascimento(DateTime dataNascimento)
         {
             DataNascimento = dataNascimento;
         }
-        public void informarEmail(string email)
+        public void InformarEmail(string email)
         {
             Email = email;
         }

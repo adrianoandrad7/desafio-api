@@ -2,11 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using WebApi.Data;
 using WebApi.Models;
 using WebApi.Requests.Produto;
+using WebApi.Services;
 
 namespace WebApi.Controllers
 {
@@ -40,22 +40,21 @@ namespace WebApi.Controllers
         [HttpPost]
         public async Task<ActionResult<Produto>> PostPoduto([FromBody] CriaProduto request)
         {
-            Produto produto = new Produto();
-            produto.informarDescricao(request.Descricao);
-            produto.informarValor(request.Valor);
-            produto.informarEstoque(request.QuantidadeEstoque);
+            try
+            {
+                var produtoService = new ProdutoService(_context);
+                var produto = await produtoService.Adicionar(request);
 
-            _context.Produtos.Add(produto);
-            await _context.SaveChangesAsync();
-
-            if (!ValidaDescricao(produto.Descricao))
-                return BadRequest("Descrição Inválida");
-            else if (!ValidaValor(produto.Valor))
-                return BadRequest("Valor Inválido");
-            else if (!ValidaEstoque(produto.QuantidadeEstoque))
-                return BadRequest("Quantidade estoque inválida");
-
-            return CreatedAtAction("GetProduto", new { id = produto.Id }, produto);
+                return CreatedAtAction("GetProduto", new { id = produto.Id }, produto);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (Exception)
+            {
+                return Problem("Erro Inesperado");
+            }
         }
 
         [HttpPut("{id}")]
@@ -63,30 +62,16 @@ namespace WebApi.Controllers
         {
             try
             {
-                var produto = await _context.Produtos.FindAsync(id);
-
-                if (produto?.Id != id)
-                    return BadRequest();
-
-                await _context.SaveChangesAsync();
-
-                produto.informarDescricao(request.Descricao);
-                produto.informarValor(request.Valor);
-                produto.informarEstoque(request.QuantidadeEstoque);
-
-                if (!ValidaDescricao(produto.Descricao))
-                    return BadRequest("Descrição Inválido");
-                else if (!ValidaValor(produto.Valor))
-                    return BadRequest("Valor Inválido");
-                else if (!ValidaEstoque(produto.QuantidadeEstoque))
-                    return BadRequest("Quantidade estoque Inválido");
+                var produtoService = new ProdutoService(_context);
+                var usuario = await produtoService.Atualizar(id, request);
             }
-            catch (DbUpdateConcurrencyException)
+            catch (InvalidOperationException ex)
             {
-                if (!ProdutoExists(id))
-                    return NotFound();
-                else
-                    throw;
+                return BadRequest(ex.Message);
+            }
+            catch (Exception)
+            {
+                return Problem("Erro Inesperado");
             }
             return NoContent();
         }
@@ -94,39 +79,10 @@ namespace WebApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduto(Guid id)
         {
-            var produto = await _context.Produtos.FindAsync(id);
-            if(produto == null)
-                return NotFound();
-
-            _context.Produtos.Remove(produto);
-            await _context.SaveChangesAsync();
+            var produtoService = new ProdutoService(_context);
+            var produto = await produtoService.Deletar(id);
 
             return NoContent();
-        }
-        private bool ValidaDescricao(string descricao)
-        {
-            if (descricao != null && descricao.Length <= 200)
-                return true;
-            else
-                return false;
-        }
-        private bool ValidaValor(double valor)
-        {
-            if(valor > 0)
-                return true;
-            else
-                return false;
-        }
-        private bool ValidaEstoque(int estoque)
-        {
-            if(estoque <= 0)
-                return false;
-            else
-                return true;
-        }
-        private bool ProdutoExists(Guid id)
-        {
-            return _context.Produtos.Any(e => e.Id == id);
         }
     }
 }
