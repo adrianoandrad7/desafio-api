@@ -55,7 +55,6 @@ namespace WebApi.Services
 
             return usuario;
         }
-
         public async Task<Usuario> Deletar(Guid id)
         {
             var usuario = await _context.Usuarios.FindAsync(id);

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace WebApi.Models
 {
@@ -12,6 +9,7 @@ namespace WebApi.Models
         public double Valor { get; private set; }
         public bool Ativo { get; private set; }
         public int QuantidadeEstoque { get; private set; }
+
         public Produto(string descricao, double valor, int quantidadeNoEstoque)
         {
             Id = Guid.NewGuid();

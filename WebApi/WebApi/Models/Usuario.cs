@@ -27,7 +27,7 @@ namespace WebApi.Models
         }
         public void InformarNome(string nome)
         {
-            Nome = nome; 
+            Nome = nome;
         }
         public void InformarCPF(string cpf)
         {
@@ -41,6 +41,5 @@ namespace WebApi.Models
         {
             Email = email;
         }
-
     }
 }

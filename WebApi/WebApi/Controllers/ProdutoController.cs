@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using WebApi.Data;
 using WebApi.Models;
+using WebApi.Requests;
 using WebApi.Requests.Produto;
 using WebApi.Services;
 
@@ -58,12 +59,12 @@ namespace WebApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutProduto(Guid id, [FromBody] CriaProduto request)
+        public async Task<IActionResult> PutProduto(Guid id, [FromBody] AtualizaProduto request)
         {
             try
             {
                 var produtoService = new ProdutoService(_context);
-                var usuario = await produtoService.Atualizar(id, request);
+                var pedido = await produtoService.Atualizar(id,request);
             }
             catch (InvalidOperationException ex)
             {

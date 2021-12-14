@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using WebApi.Data;
 using WebApi.Models;
+using WebApi.Requests;
 using WebApi.Requests.Produto;
 
 namespace WebApi.Services
@@ -29,8 +30,7 @@ namespace WebApi.Services
 
             return produto;
         }
-
-        public async Task<Produto> Atualizar(Guid id, CriaProduto request)
+        public async Task<Produto> Atualizar(Guid id, AtualizaProduto request)
         {
 
             if (!ValidaDescricao(request.Descricao))
@@ -43,7 +43,7 @@ namespace WebApi.Services
             var produto = await _context.Produtos.FindAsync(id);
 
             if (produto?.Id != id)
-                throw new InvalidOperationException("Usuário não encontrado");
+                throw new InvalidOperationException("Produto não encontrado");
 
             produto.InformarDescricao(request.Descricao);
             produto.InformarValor(request.Valor);
