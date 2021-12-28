@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using WebApi.Data;
 using WebApi.Models;
 using WebApi.Requests;
+using WebApi.Requests.Item;
 using WebApi.Services;
 
 namespace WebApi.Controllers
@@ -54,7 +55,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPost("{id}/itens")]
-        public async Task<ActionResult<PedidoItem>>PostPedidoItem([FromBody] AdicionarItem request)
+        public async Task<ActionResult<Pedido>>PostPedidoItem([FromBody] AdicionarItem request)
         {
             try
             {
@@ -62,7 +63,6 @@ namespace WebApi.Controllers
                 var itemPedido = await pedidoService.AdicionarItem(request);
 
                 return CreatedAtAction("GetPedido", new { id = itemPedido.Id }, itemPedido);
-
             }
             catch (InvalidOperationException ex)
             {
@@ -77,7 +77,6 @@ namespace WebApi.Controllers
             {
                 var pedidoService = new PedidoService(_context);
                 var pedido = await pedidoService.AtualizarPedidoItem(requestItem);
-
             }
             catch (InvalidOperationException ex)
             {
@@ -100,10 +99,10 @@ namespace WebApi.Controllers
         }
 
         [HttpDelete("{id}/itens")]
-        public async Task<IActionResult> DeletePedidoItem(Guid id)
+        public async Task<IActionResult> DeletePedidoItem([FromBody] DeletaItem request)
         {
             var pedidoService = new PedidoService(_context);
-            var pedido = await pedidoService.DeletarPedidoItem(id);
+            var pedido = await pedidoService.DeletarPedidoItem(request.IdPedido,request.IdItem);
 
             return NoContent();
         }

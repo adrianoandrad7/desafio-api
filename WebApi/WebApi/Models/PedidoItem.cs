@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace WebApi.Models
 {
@@ -8,25 +9,29 @@ namespace WebApi.Models
         public Guid PedidoId { get; private set; }
         public Pedido Pedido { get; private set; }
         public Guid ProdutoId {get; private set; }
-        public Produto Produto { get; private set; }
+        public string DescricaoProduto { get; private set; }
+        public double ValorProduto { get; private set; }
         public int Quantidade { get; private set; }
-        public double Valor { get; private set; }
+        public double ValorTotalItem { get; private set; }
 
         public PedidoItem(Pedido pedido, Produto produto, int quantidade)
         {
             Id = Guid.NewGuid();
             Pedido = pedido;
-            Produto = produto;
+            ProdutoId = produto.Id;
+            DescricaoProduto = produto.Descricao;
             Quantidade = quantidade;
-            Valor = produto.Valor * quantidade;
+            ValorProduto = produto.Valor;
+            ValorTotalItem = produto.Valor * quantidade;
         }
         protected PedidoItem()
         {
 
         }
-        public void InformarQuantidade(int quantidade)
+        public void InformarQuantidade(int quantidade,double valor)
         {
             Quantidade = quantidade;
+            ValorTotalItem = valor * quantidade;
         }
     }
 }

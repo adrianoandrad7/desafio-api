@@ -32,7 +32,6 @@ namespace WebApi.Services
         }
         public async Task<Produto> Atualizar(Guid id, AtualizaProduto request)
         {
-
             if (!ValidaDescricao(request.Descricao))
                 throw new InvalidOperationException("Descrição Inválida");
             else if (!ValidaValor(request.Valor))

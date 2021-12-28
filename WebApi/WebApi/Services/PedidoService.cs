@@ -1,10 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using WebApi.Data;
 using WebApi.Models;
+using WebApi.Models.Enums;
 using WebApi.Requests;
 
 namespace WebApi.Services
@@ -25,83 +24,68 @@ namespace WebApi.Services
 
             return pedido;
         }
-        public async Task<PedidoItem> AdicionarItem(AdicionarItem request)
+        public async Task<Pedido> AdicionarItem(AdicionarItem request)
         {
+            var pedido = await _context.Pedidos.Include(x => x.Itens).FirstOrDefaultAsync(x => x.Id == request.PedidoId);
 
-            if (ProdutoExists(request.ProdutoId))
-            {
-                throw new InvalidOperationException("Produto já esta no pedido");
-            }
-       
-            var pedido = await _context.Pedidos.FindAsync(request.PedidoId);
             if (pedido?.Id != request.PedidoId)
                 throw new InvalidOperationException("Pedido não encontrado");
 
             var produto = await _context.Produtos.FindAsync(request.ProdutoId);
+
             if (produto?.Id != request.ProdutoId)
                 throw new InvalidOperationException("Produto não encontrado");
 
-            PedidoItem pedidoItem = new PedidoItem(pedido, produto, request.Quantidade);
-            _context.PedidoItens.Add(pedidoItem);
-
+            pedido.AdicionarItem(produto, request.Quantidade);
             await _context.SaveChangesAsync();
 
-            return pedidoItem;
+            return pedido;
         }
-        public async Task<PedidoItem> AtualizarPedidoItem(AtualizarItem requestItem)
+        public async Task<Pedido> AtualizarPedidoItem(AtualizarItem requestItem)
         {
-            var pedido = await _context.Pedidos.FindAsync(requestItem.IdPedido);
+            var pedido = await _context.Pedidos.Include(x => x.Itens).FirstOrDefaultAsync(x => x.Id == requestItem.IdPedido);
+
             if (pedido?.Id != requestItem.IdPedido)
                 throw new InvalidOperationException("Pedido não encontrado");
 
-            var item = await _context.PedidoItens.FindAsync(requestItem.IdItem);
-            if (item?.Id != requestItem.IdItem)
-                throw new InvalidOperationException("Item não encontrado");
-
-            item.InformarQuantidade(requestItem.Quantidade);
-
+            pedido.AtualizaQuantidade(requestItem.IdItem,requestItem.Quantidade);
             await _context.SaveChangesAsync();
 
-            return item;
+            return pedido;
         }
-
         public async Task<Pedido> DeletarPedido(Guid id)
         {
             var pedido = await _context.Pedidos.Include(x => x.Itens).FirstOrDefaultAsync(x => x.Id == id);
 
-            if (!ValidaStatusCriado((int)pedido.Status))
-                throw new InvalidOperationException("Status Inválido");
-
             if (pedido == null)
                 throw new InvalidOperationException("Pedido Inválido");
+
+            if (ValidaStatusConcluido(pedido.Status))
+                throw new InvalidOperationException("Status Inválido");
 
             _context.Pedidos.Remove(pedido);
             await _context.SaveChangesAsync();
 
             return pedido;
         }
-        public async Task<PedidoItem> DeletarPedidoItem(Guid id)
+        public async Task<Pedido> DeletarPedidoItem(Guid idPedido, Guid idItem)
         {
-            var item = await _context.PedidoItens.FindAsync(id);
+            var pedido = await _context.Pedidos.Include(x => x.Itens).FirstOrDefaultAsync(x => x.Id == idPedido);
 
-            if (item == null)
-                throw new InvalidOperationException("Item Inválido");
+            if (pedido == null)
+                throw new InvalidOperationException("Pedido Inválido");
 
-            _context.PedidoItens.Remove(item);
+            pedido.Removertem(idItem);
             await _context.SaveChangesAsync();
 
-            return item;
+            return pedido;
         }
-        private bool ValidaStatusCriado(int status)
+        private bool ValidaStatusConcluido(PedidoStatus status)
         {
-            if (status != 3)
+            if (status == PedidoStatus.Concluido)
                 return true;
             else
                 return false;
-        }
-        private bool ProdutoExists(Guid id)
-        {
-            return _context.PedidoItens.Any(e => e.ProdutoId == id);
         }
     }
 }

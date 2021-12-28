@@ -20,6 +20,7 @@ namespace WebApi.Data
             modelBuilder.Entity<Usuario>().ToTable("usuario");
             modelBuilder.Entity<Produto>().ToTable("produto");
             modelBuilder.Entity<PedidoItem>().ToTable("pedido_item");
+          
 
             ConfigurarPedido(modelBuilder);
 
@@ -58,8 +59,6 @@ namespace WebApi.Data
             });
         }
 
-
-
         private static ModelBuilder ConfigurarPedidoItem(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<PedidoItem>()
@@ -69,14 +68,15 @@ namespace WebApi.Data
             return modelBuilder.Entity<PedidoItem>(
                         eb =>
                         {
-                            eb.Property(b => b.Id).HasColumnName("Id");
+                            eb.Property(b => b.Id).HasColumnName("Id").IsRequired().ValueGeneratedNever();
                             eb.Property(b => b.Quantidade).HasColumnName("Quantidade");
                             eb.Property(b => b.PedidoId).HasColumnName("PedidoId");
+                            eb.Property(b => b.ValorProduto).HasColumnName("ValorProduto");
+                            eb.Property(b => b.ValorTotalItem).HasColumnName("ValorTotalItem");
                             eb.Property(b => b.ProdutoId).HasColumnName("ProdutoId");
-
+                            eb.Property(b => b.DescricaoProduto).HasColumnName("DescricaoProduto");
                         });
         }
-
         private static void ConfigurarUsuario(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Usuario>(
