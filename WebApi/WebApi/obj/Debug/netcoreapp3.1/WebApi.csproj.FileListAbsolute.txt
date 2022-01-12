@@ -74,7 +74,6 @@ C:\Users\HP\Desktop\Projetos\WebApi\desafio-api\WebApi\WebApi\obj\Debug\netcorea
 C:\Users\HP\Desktop\Projetos\WebApi\desafio-api\WebApi\WebApi\obj\Debug\netcoreapp3.1\WebApi.AssemblyInfoInputs.cache
 C:\Users\HP\Desktop\Projetos\WebApi\desafio-api\WebApi\WebApi\obj\Debug\netcoreapp3.1\WebApi.AssemblyInfo.cs
 C:\Users\HP\Desktop\Projetos\WebApi\desafio-api\WebApi\WebApi\obj\Debug\netcoreapp3.1\WebApi.csproj.CoreCompileInputs.cache
-C:\Users\HP\Desktop\Projetos\WebApi\desafio-api\WebApi\WebApi\obj\Debug\netcoreapp3.1\WebApi.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\HP\Desktop\Projetos\WebApi\desafio-api\WebApi\WebApi\obj\Debug\netcoreapp3.1\WebApi.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\HP\Desktop\Projetos\WebApi\desafio-api\WebApi\WebApi\obj\Debug\netcoreapp3.1\staticwebassets\WebApi.StaticWebAssets.Manifest.cache
 C:\Users\HP\Desktop\Projetos\WebApi\desafio-api\WebApi\WebApi\obj\Debug\netcoreapp3.1\WebApi.RazorTargetAssemblyInfo.cache
@@ -105,3 +104,9 @@ C:\Users\HP\Desktop\Projetos\WebApi\desafio-api\WebApi\WebApi\bin\Debug\netcorea
 C:\Users\HP\Desktop\Projetos\WebApi\desafio-api\WebApi\WebApi\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\HP\Desktop\Projetos\WebApi\desafio-api\WebApi\WebApi\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 C:\Users\HP\Desktop\Projetos\WebApi\desafio-api\WebApi\WebApi\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+C:\Users\HP\Desktop\Projetos\WebApi\desafio-api\WebApi\WebApi\bin\Debug\netcoreapp3.1\Data.dll
+C:\Users\HP\Desktop\Projetos\WebApi\desafio-api\WebApi\WebApi\bin\Debug\netcoreapp3.1\Domain.dll
+C:\Users\HP\Desktop\Projetos\WebApi\desafio-api\WebApi\WebApi\bin\Debug\netcoreapp3.1\Domain.pdb
+C:\Users\HP\Desktop\Projetos\WebApi\desafio-api\WebApi\WebApi\bin\Debug\netcoreapp3.1\Data.pdb
+C:\Users\HP\Desktop\Projetos\WebApi\desafio-api\WebApi\WebApi\bin\Debug\netcoreapp3.1\Commands.dll
+C:\Users\HP\Desktop\Projetos\WebApi\desafio-api\WebApi\WebApi\bin\Debug\netcoreapp3.1\Commands.pdb

@@ -1379,6 +1379,45 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "Commands/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Data": "1.0.0",
+          "Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Commands.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Commands.dll": {}
+        }
+      },
+      "Data/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Domain": "1.0.0",
+          "Microsoft.EntityFrameworkCore": "3.1.21",
+          "Microsoft.EntityFrameworkCore.Relational": "3.1.0"
+        },
+        "compile": {
+          "bin/placeholder/Data.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Data.dll": {}
+        }
+      },
+      "Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Domain.dll": {}
+        }
       }
     }
   },
@@ -5244,10 +5283,27 @@
         "system.xml.xmlserializer.4.3.0.nupkg.sha512",
         "system.xml.xmlserializer.nuspec"
       ]
+    },
+    "Commands/1.0.0": {
+      "type": "project",
+      "path": "../Commands/Commands.csproj",
+      "msbuildProject": "../Commands/Commands.csproj"
+    },
+    "Data/1.0.0": {
+      "type": "project",
+      "path": "../Data/Data.csproj",
+      "msbuildProject": "../Data/Data.csproj"
+    },
+    "Domain/1.0.0": {
+      "type": "project",
+      "path": "../Domain/Domain.csproj",
+      "msbuildProject": "../Domain/Domain.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "Commands >= 1.0.0",
+      "Domain >= 1.0.0",
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson >= 3.1.21",
       "Microsoft.Bcl.AsyncInterfaces >= 6.0.0",
       "Microsoft.EntityFrameworkCore >= 3.1.21",
@@ -5286,7 +5342,14 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\HP\\Desktop\\Projetos\\WebApi\\desafio-api\\WebApi\\Commands\\Commands.csproj": {
+              "projectPath": "C:\\Users\\HP\\Desktop\\Projetos\\WebApi\\desafio-api\\WebApi\\Commands\\Commands.csproj"
+            },
+            "C:\\Users\\HP\\Desktop\\Projetos\\WebApi\\desafio-api\\WebApi\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\HP\\Desktop\\Projetos\\WebApi\\desafio-api\\WebApi\\Domain\\Domain.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

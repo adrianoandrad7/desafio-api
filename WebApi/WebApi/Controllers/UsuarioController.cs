@@ -1,12 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Comands.Services;
+using Commands.Requests;
+using Data;
+using Domain;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using WebApi.Data;
-using WebApi.Models;
-using WebApi.Requests;
-using WebApi.Services;
+
 
 namespace WebApi.Controllers
 {
@@ -29,7 +30,7 @@ namespace WebApi.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Usuario>> GetUsuario(Guid id)
         {
-            var usuario = await _context.Usuarios.FindAsync(id);
+            var usuario =  await _context.Usuarios.FindAsync(id);
 
             if (usuario == null)
                 return NotFound();
