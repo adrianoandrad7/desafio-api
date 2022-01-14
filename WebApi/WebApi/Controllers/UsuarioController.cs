@@ -20,7 +20,6 @@ namespace WebApi.Controllers
         public UsuarioController(ApiContext context, UsuarioService usuarioService)
         {
             _context = context;
-
             _usuarioService = usuarioService;
         }
 
@@ -46,8 +45,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                var usuarioService = _usuarioService;
-                var usuario = await usuarioService.Adicionar(request);
+                var usuario = await _usuarioService.Adicionar(request);
 
                 return CreatedAtAction("GetUsuarios", new { id = usuario.Id }, usuario);
             }
@@ -66,8 +64,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                var usuarioService = _usuarioService;
-                var usuario = await usuarioService.Atualizar(id,request);
+                var usuario = await _usuarioService.Atualizar(id,request);
             }
             catch (InvalidOperationException ex)
             {
@@ -83,8 +80,8 @@ namespace WebApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUsuario(Guid id)
         {
-            var usuarioService = _usuarioService;
-            var usuario = await usuarioService.Deletar(id);
+
+            var usuario = await _usuarioService.Deletar(id);
             
             return NoContent();
         }

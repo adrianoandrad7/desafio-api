@@ -45,8 +45,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                var produtoService = _produtoService;
-                var produto = await produtoService.Adicionar(request);
+                var produto = await _produtoService.Adicionar(request);
 
                 return CreatedAtAction("GetProduto", new { id = produto.Id }, produto);
             }
@@ -65,8 +64,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                var produtoService = _produtoService;
-                var pedido = await produtoService.Atualizar(id,request);
+                var pedido = await _produtoService.Atualizar(id,request);
             }
             catch (InvalidOperationException ex)
             {
@@ -82,8 +80,7 @@ namespace WebApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduto(Guid id)
         {
-            var produtoService = _produtoService;
-            var produto = await produtoService.Deletar(id);
+            var produto = await _produtoService.Deletar(id);
 
             return NoContent();
         }

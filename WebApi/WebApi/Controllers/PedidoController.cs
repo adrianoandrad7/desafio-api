@@ -45,8 +45,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                var pedidoService = _pedidoService;
-                var pedido = await pedidoService.AdicionarPedido(request);
+                var pedido = await _pedidoService.AdicionarPedido(request);
 
                 return CreatedAtAction("GetPedido", new { id = pedido.Id }, pedido);
             }
@@ -61,8 +60,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                var pedidoService = _pedidoService;
-                var itemPedido = await pedidoService.AdicionarItem(request);
+                var itemPedido = await _pedidoService.AdicionarItem(request);
 
                 return CreatedAtAction("GetPedido", new { id = itemPedido.Id }, itemPedido);
             }
@@ -77,8 +75,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                var pedidoService = _pedidoService;
-                var pedido = await pedidoService.AtualizarPedidoItem(requestItem);
+                var pedido = await _pedidoService.AtualizarPedidoItem(requestItem);
             }
             catch (InvalidOperationException ex)
             {
@@ -94,8 +91,7 @@ namespace WebApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePedido(Guid id)
         {
-            var pedidoService = _pedidoService;
-            var pedido = await pedidoService.DeletarPedido(id);
+            var pedido = await _pedidoService.DeletarPedido(id);
 
             return NoContent();
         }
@@ -103,8 +99,7 @@ namespace WebApi.Controllers
         [HttpDelete("{id}/itens")]
         public async Task<IActionResult> DeletePedidoItem([FromBody] DeletaItem request)
         {
-            var pedidoService = _pedidoService;
-            var pedido = await pedidoService.DeletarPedidoItem(request.IdPedido,request.IdItem);
+            var pedido = await _pedidoService.DeletarPedidoItem(request.IdPedido,request.IdItem);
 
             return NoContent();
         }
