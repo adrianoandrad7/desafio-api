@@ -5,16 +5,16 @@ using Data;
 using Domain;
 using Commands.Requests;
 
-namespace Comands.Services
+namespace Commands.Services
 {
     public class UsuarioService
     {
         private readonly Repository<Usuario> _repository;
         private readonly ApiContext _context;
-        public UsuarioService(ApiContext context)
+        public UsuarioService(ApiContext context, Repository<Usuario> repository)
         {
             _context = context;
-            _repository = new Repository<Usuario>(_context);
+            _repository = repository;
         }
         public async Task<Usuario> Adicionar(CriaUsuario request)
         {
@@ -30,7 +30,6 @@ namespace Comands.Services
             Usuario usuario = new Usuario(request.Email, request.Nome, request.DataNascimento, request.CPF);
 
             _repository.Add(usuario);
-
             await _repository.SaveChangesAsync();
 
             return usuario;

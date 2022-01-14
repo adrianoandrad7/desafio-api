@@ -1,17 +1,21 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Threading.Tasks;
 using Data;
 using Domain;
 using Commands.Requests;
-
 namespace Commands.Services
 {
     public class ProdutoService
     {
         private readonly ApiContext _context;
-        public ProdutoService(ApiContext context)
+        private readonly Repository<Produto> _repository;
+
+        public ProdutoService(ApiContext context, Repository<Produto> repository)
         {
             _context = context;
+            _repository = repository;
+
         }
         public async Task<Produto> Adicionar(CriaProduto request)
         {
@@ -24,8 +28,8 @@ namespace Commands.Services
 
             Produto produto = new Produto(request.Descricao, request.Valor, request.QuantidadeEstoque);
 
-            _context.Produtos.Add(produto);
-            await _context.SaveChangesAsync();
+            _repository.Add(produto);
+            await _repository.SaveChangesAsync();
 
             return produto;
         }
@@ -47,7 +51,7 @@ namespace Commands.Services
             produto.InformarValor(request.Valor);
             produto.InformarEstoque(request.QuantidadeEstoque);
 
-            await _context.SaveChangesAsync();
+            await _repository.SaveChangesAsync();
 
             return produto;
         }
@@ -58,7 +62,7 @@ namespace Commands.Services
             if (produto == null)
                 throw new InvalidOperationException("Usuário Inválido");
 
-            _context.Produtos.Remove(produto);
+            await _repository.DeleteAsync(produto);
             await _context.SaveChangesAsync();
 
             return produto;

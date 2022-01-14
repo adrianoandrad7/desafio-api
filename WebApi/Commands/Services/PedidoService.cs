@@ -11,15 +11,17 @@ namespace Commands.Services
     public class PedidoService
     {
         private readonly ApiContext _context;
-        public PedidoService(ApiContext context)
+        private readonly Repository<Pedido> _repository;
+        public PedidoService(ApiContext context, Repository<Pedido> repository)
         {
             _context = context;
+            _repository = repository;
         }
         public async Task<Pedido> AdicionarPedido(CriaPedido request)
         {
             Pedido pedido = new Pedido(request.IdUsuario);
 
-            _context.Pedidos.Add(pedido);
+            _repository.Add(pedido);
             await _context.SaveChangesAsync();
 
             return pedido;
@@ -63,8 +65,8 @@ namespace Commands.Services
             if (ValidaStatusConcluido(pedido.Status))
                 throw new InvalidOperationException("Status Inválido");
 
-            _context.Pedidos.Remove(pedido);
-            await _context.SaveChangesAsync();
+            await _repository.DeleteAsync(pedido);
+            await _repository.SaveChangesAsync();
 
             return pedido;
         }

@@ -1,5 +1,4 @@
-﻿using Comands.Services;
-using Commands.Requests;
+﻿using Commands.Requests;
 using Commands.Services;
 using Data;
 using Domain;
@@ -17,9 +16,11 @@ namespace WebApi.Controllers
     public class PedidoController : ControllerBase
     {
         private readonly ApiContext _context;
-        public PedidoController(ApiContext context)
+        private readonly PedidoService _pedidoService;
+        public PedidoController(ApiContext context,PedidoService pedidoService)
         {
             _context = context;
+            _pedidoService = pedidoService;
         }
 
         [HttpGet]
@@ -44,7 +45,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                var pedidoService = new PedidoService(_context);
+                var pedidoService = _pedidoService;
                 var pedido = await pedidoService.AdicionarPedido(request);
 
                 return CreatedAtAction("GetPedido", new { id = pedido.Id }, pedido);
@@ -60,7 +61,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                var pedidoService = new PedidoService(_context);
+                var pedidoService = _pedidoService;
                 var itemPedido = await pedidoService.AdicionarItem(request);
 
                 return CreatedAtAction("GetPedido", new { id = itemPedido.Id }, itemPedido);
@@ -76,7 +77,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                var pedidoService = new PedidoService(_context);
+                var pedidoService = _pedidoService;
                 var pedido = await pedidoService.AtualizarPedidoItem(requestItem);
             }
             catch (InvalidOperationException ex)
@@ -93,7 +94,7 @@ namespace WebApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePedido(Guid id)
         {
-            var pedidoService = new PedidoService(_context);
+            var pedidoService = _pedidoService;
             var pedido = await pedidoService.DeletarPedido(id);
 
             return NoContent();
@@ -102,7 +103,7 @@ namespace WebApi.Controllers
         [HttpDelete("{id}/itens")]
         public async Task<IActionResult> DeletePedidoItem([FromBody] DeletaItem request)
         {
-            var pedidoService = new PedidoService(_context);
+            var pedidoService = _pedidoService;
             var pedido = await pedidoService.DeletarPedidoItem(request.IdPedido,request.IdItem);
 
             return NoContent();

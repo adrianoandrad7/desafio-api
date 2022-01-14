@@ -1,4 +1,7 @@
+
+using Commands.Services;
 using Data;
+using Domain;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -26,9 +29,11 @@ namespace WebApi
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "Projeto-API", Version = "v1" });});
             services.AddControllers().AddNewtonsoftJson(options =>
             options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-            //services.AddScoped(Repository<>);
+            services.AddScoped(typeof(Repository<>));
+            services.AddScoped(typeof(UsuarioService));
+            services.AddScoped(typeof(ProdutoService));
+            services.AddScoped(typeof(PedidoService));
 
-           // services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

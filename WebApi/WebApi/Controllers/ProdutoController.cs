@@ -1,5 +1,4 @@
-﻿using Comands.Services;
-using Commands.Requests;
+﻿using Commands.Requests;
 using Commands.Services;
 using Data;
 using Domain;
@@ -16,9 +15,12 @@ namespace WebApi.Controllers
     public class ProdutoController : ControllerBase
     {
         private readonly ApiContext _context;
-        public ProdutoController(ApiContext context)
+
+        private readonly ProdutoService _produtoService;
+        public ProdutoController(ApiContext context,ProdutoService produtoService )
         {
             _context = context;
+            _produtoService = produtoService;
         }
 
         [HttpGet]
@@ -43,7 +45,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                var produtoService = new ProdutoService(_context);
+                var produtoService = _produtoService;
                 var produto = await produtoService.Adicionar(request);
 
                 return CreatedAtAction("GetProduto", new { id = produto.Id }, produto);
@@ -63,7 +65,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                var produtoService = new ProdutoService(_context);
+                var produtoService = _produtoService;
                 var pedido = await produtoService.Atualizar(id,request);
             }
             catch (InvalidOperationException ex)
@@ -80,7 +82,7 @@ namespace WebApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduto(Guid id)
         {
-            var produtoService = new ProdutoService(_context);
+            var produtoService = _produtoService;
             var produto = await produtoService.Deletar(id);
 
             return NoContent();

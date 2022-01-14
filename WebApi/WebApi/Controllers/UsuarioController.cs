@@ -1,5 +1,5 @@
-﻿using Comands.Services;
-using Commands.Requests;
+﻿using Commands.Requests;
+using Commands.Services;
 using Data;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
@@ -16,9 +16,12 @@ namespace WebApi.Controllers
     public class UsuarioController : ControllerBase
     {
         private readonly ApiContext _context;
-        public UsuarioController(ApiContext context)
+        private readonly UsuarioService _usuarioService;
+        public UsuarioController(ApiContext context, UsuarioService usuarioService)
         {
             _context = context;
+
+            _usuarioService = usuarioService;
         }
 
         [HttpGet]
@@ -43,7 +46,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                var usuarioService = new UsuarioService(_context);
+                var usuarioService = _usuarioService;
                 var usuario = await usuarioService.Adicionar(request);
 
                 return CreatedAtAction("GetUsuarios", new { id = usuario.Id }, usuario);
@@ -63,7 +66,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                var usuarioService = new UsuarioService(_context);
+                var usuarioService = _usuarioService;
                 var usuario = await usuarioService.Atualizar(id,request);
             }
             catch (InvalidOperationException ex)
@@ -80,7 +83,7 @@ namespace WebApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUsuario(Guid id)
         {
-            var usuarioService = new UsuarioService(_context);
+            var usuarioService = _usuarioService;
             var usuario = await usuarioService.Deletar(id);
             
             return NoContent();
