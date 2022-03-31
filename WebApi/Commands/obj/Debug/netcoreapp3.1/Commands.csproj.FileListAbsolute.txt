@@ -1,0 +1,15 @@
+C:\Users\HP\Desktop\Projetos\WebApi\desafio-api\WebApi\Commands\obj\Debug\netcoreapp3.1\Commands.csproj.AssemblyReference.cache
+C:\Users\HP\Desktop\Projetos\WebApi\desafio-api\WebApi\Commands\obj\Debug\netcoreapp3.1\Commands.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HP\Desktop\Projetos\WebApi\desafio-api\WebApi\Commands\obj\Debug\netcoreapp3.1\Commands.AssemblyInfoInputs.cache
+C:\Users\HP\Desktop\Projetos\WebApi\desafio-api\WebApi\Commands\obj\Debug\netcoreapp3.1\Commands.AssemblyInfo.cs
+C:\Users\HP\Desktop\Projetos\WebApi\desafio-api\WebApi\Commands\obj\Debug\netcoreapp3.1\Commands.csproj.CoreCompileInputs.cache
+C:\Users\HP\Desktop\Projetos\WebApi\desafio-api\WebApi\Commands\bin\Debug\netcoreapp3.1\Commands.deps.json
+C:\Users\HP\Desktop\Projetos\WebApi\desafio-api\WebApi\Commands\bin\Debug\netcoreapp3.1\Commands.dll
+C:\Users\HP\Desktop\Projetos\WebApi\desafio-api\WebApi\Commands\bin\Debug\netcoreapp3.1\Commands.pdb
+C:\Users\HP\Desktop\Projetos\WebApi\desafio-api\WebApi\Commands\bin\Debug\netcoreapp3.1\Data.dll
+C:\Users\HP\Desktop\Projetos\WebApi\desafio-api\WebApi\Commands\bin\Debug\netcoreapp3.1\Domain.dll
+C:\Users\HP\Desktop\Projetos\WebApi\desafio-api\WebApi\Commands\bin\Debug\netcoreapp3.1\Data.pdb
+C:\Users\HP\Desktop\Projetos\WebApi\desafio-api\WebApi\Commands\bin\Debug\netcoreapp3.1\Domain.pdb
+C:\Users\HP\Desktop\Projetos\WebApi\desafio-api\WebApi\Commands\obj\Debug\netcoreapp3.1\Commands.csproj.CopyComplete
+C:\Users\HP\Desktop\Projetos\WebApi\desafio-api\WebApi\Commands\obj\Debug\netcoreapp3.1\Commands.dll
+C:\Users\HP\Desktop\Projetos\WebApi\desafio-api\WebApi\Commands\obj\Debug\netcoreapp3.1\Commands.pdb
